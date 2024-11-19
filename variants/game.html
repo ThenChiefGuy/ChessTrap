@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-5749805351712125">
+<title>ChessTraps</title>
+    <link rel="icon" type="image/x-icon" href="../img/ChessTrapss.png">
+    <link rel="stylesheet" href="../css/universal.css">
+    <link rel="stylesheet" href="play.css">
+    <link rel="stylesheet" href="game.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Rubik&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRX4RG9091"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QRX4RG9091');
+    </script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5749805351712125"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav class="nav-bar"></nav>
+
+    <div class="container">
+        <div class="mid-container">
+            <div class="board">
+                <div class="pieces">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="side-bar-game">
+            <div class="black-side player-side">
+                <div class="button nickname">Black</div>
+                <div class="button">
+                    <div class="button clock">
+                        <div class="minutes">0</div>
+                        <div>:</div>
+                        <div class="seconds">00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mid-side">
+                <div class="actual-history">
+                    
+                </div>
+                <div class="history">
+                    
+                </div>
+            </div>
+
+            <div class="white-side player-side">
+                <div class="button nickname">White</div>
+                <div class="button">
+                    <div class="button clock">
+                        <div class="minutes">0</div>
+                        <div>:</div>
+                        <div class="seconds">00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="basicFunctions.js"></script>
+    <script src="generateBoard.js"></script>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search); // supported on most modern browsers
+        var dataStringBase64Safe = urlParams.get('data');
+
+        var dataStringBase64 = decodeURIComponent(dataStringBase64Safe);
+        var dataString = window.atob(dataStringBase64);
+        var data = JSON.parse(dataString);
+
+        var folder = '../'
+    </script>
+    <script src="../others/customelements.js"></script>
+    <script src="variants.js"></script>
+    <script src="game.js"></script>
+    <script>
+        if(!data.features.includes('triangle')) {
+            resize()
+        }
+    </script>
+</body>
+
+</html>

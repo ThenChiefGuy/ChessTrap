@@ -1,0 +1,742 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*  Container  */
+
+.container {
+    align-items: center;
+}
+
+.mid-container {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    gap: .5em;
+}
+
+
+/*  bottom  */
+
+
+.right-con {
+    width: 18%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color-nav);
+    border-radius: var(--border-rad);
+}
+
+.right-con > .space {
+    position: relative;
+    width: 100%;
+}
+
+
+.right-con img {
+    height: 100%;
+    cursor: pointer;
+    transition: all .2s;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+.right-con img:not(.mode):hover, .right-con img.selected {
+    border: solid .4rem var(--text-color);
+    box-shadow: 0 0 5px var(--text-color);
+}
+
+/*  Side Bar  */
+
+
+.side-bar-game {
+    height: 90%;
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 2%;
+}
+
+.side-bar-game > * {
+    width: 100%;
+    background-color: var(--background-color-nav);
+    border-radius: var(--border-rad);
+}
+
+/*  Mid Side  */
+
+.mid-side, .choosing {
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border: solid 10px var(--background-color-nav);
+    background-color: var(--color2);
+}
+
+.mid-side .square div, .right-con > .space > div {
+    position: absolute;
+    top: .2rem;
+    right: .3rem;
+    color: var(--dark-highlight);
+    font-size: .7rem;
+    font-weight: 500;
+    z-index: 100;
+    pointer-events: none;
+}
+
+
+.actual-history {
+    height: 85%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    flex-direction: row;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.actual-history > div {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.actual-history > div > div:first-of-type {
+    font-size: 1.6rem;
+    margin-bottom: .5rem;
+}
+
+.actual-history > div > div {
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.history {
+    height: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.history > div {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+.history > div:first-of-type > div {
+    height: 2.2rem;
+    width: 60%;
+    border: solid .2rem var(--theme-darker);
+}
+
+.history-button {
+    height: 70%;
+    background-color: var(--theme-darker);
+}
+.history-button:hover {
+    background-color: var(--theme-dark);
+}
+.history img {
+    width: 80%;
+}
+
+
+/*  Players side  */
+
+.player-side {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 6px var(--color2);
+    font-family: 'Rubik', sans-serif;
+}
+
+.player-side > * {
+    height: 100%;
+    width: 100%;
+    cursor: auto;
+}
+
+.nickname {
+    margin-left: 1em;
+}
+
+
+.clock {
+    height: 70%;
+    width: 60%;
+    flex-direction: row;
+    border-radius: var(--border-rad);
+    font-size: 1.3em;
+    cursor: auto;
+    box-shadow: 1px 3px 5px var(--shadow-dark);
+}
+.black-side .clock {
+    background-color: var(--color2);
+    color: var(--text-color);
+}
+.white-side .clock {
+    background-color: var(--text-color);
+    color: var(--color2);
+}
+
+
+/*  Board  */
+/*#region*/
+
+/*  Columns  */
+
+.column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/*  squares  */
+
+
+.square {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .1s;
+}
+
+.square.can-go {
+    cursor: pointer;
+}
+
+.square.disabled {
+    opacity: 0;
+}
+
+.square > *:not(.piece) {
+    pointer-events: none;
+}
+
+
+/*  clicked  */
+
+.column .square.clicked {
+    transition: all 0s;
+    background-image: none !important;
+}
+.column:nth-child(2n+1) .square:nth-child(2n).clicked {
+    background-color: var(--light-clicked);
+}
+.column:nth-child(2n) .square:nth-child(2n).clicked {
+    background-color: var(--dark-clicked);
+}
+.column:nth-child(2n+1) .square:nth-child(2n+1).clicked {
+    background-color: var(--dark-clicked);
+}
+.column:nth-child(2n) .square:nth-child(2n+1).clicked {
+    background-color: var(--light-clicked);
+}
+
+.square.ocean-square {
+    background-image: none !important;
+}
+.column:nth-child(2n+1) .square:nth-child(2n).ocean-square {
+    background-color: #003996 !important;
+}
+.column:nth-child(2n) .square:nth-child(2n).ocean-square {
+    background-color: #012b78 !important;
+}
+.column:nth-child(2n+1) .square:nth-child(2n+1).ocean-square {
+    background-color: #012b78 !important;
+}
+.column:nth-child(2n) .square:nth-child(2n+1).ocean-square {
+    background-color: #003996 !important;
+}
+
+
+/*  right-clicked  */
+
+.column .square.right-clicked {
+    transition: all 0s;
+    background-image: none !important;
+}
+.column:nth-child(2n+1) .square:nth-child(2n).right-clicked {
+    background-color: var(--light-highlight);
+}
+.column:nth-child(2n) .square:nth-child(2n).right-clicked {
+    background-color: var(--dark-highlight);
+}
+.column:nth-child(2n+1) .square:nth-child(2n+1).right-clicked {
+    background-color: var(--dark-highlight);
+}
+.column:nth-child(2n) .square:nth-child(2n+1).right-clicked {
+    background-color: var(--light-highlight);
+}
+
+
+/*  piece-over  */
+
+.column:nth-child(2n+1) .square:nth-child(2n).piece-over {
+    border: solid .6rem var(--light-highlight);
+}
+.column:nth-child(2n) .square:nth-child(2n).piece-over {
+    border: solid .6rem var(--dark-highlight);
+}
+.column:nth-child(2n+1) .square:nth-child(2n+1).piece-over {
+    border: solid .6rem var(--dark-highlight);
+}
+.column:nth-child(2n) .square:nth-child(2n+1).piece-over {
+    border: solid .6rem var(--light-highlight);
+}
+
+
+.column .square.piece-over.without-moving {
+    border: solid .6rem var(--other-highlight);
+}
+
+
+/*  Highlights  */
+
+.highlight {
+    height: 30%;
+    width: 30%;
+    background-color: var(--dark-highlight);
+    border-radius: 30%;
+    transition: opacity .2s;
+    z-index: -2;
+    opacity: 0;
+}
+
+.can-go .highlight, .highlight.active {
+    z-index: 120;
+    opacity: 1;
+}
+
+.can-go.without-moving .highlight {
+    background-color: var(--other-highlight);
+}
+
+
+/*  Pieces  */
+
+.none {
+    z-index: -100 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+
+.board .piece-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 15;
+}
+/*#endregion*/
+
+/*  take without moving  */
+
+
+.take-without-moving {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 6rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color-nav);
+    border: solid .2rem var(--theme-darker);
+    border-radius: var(--border-rad);
+    box-shadow: 0 5px 0 0 var(--shadow-color);
+    transition: opacity 1s;
+    font-size: 0.9rem;
+    opacity: 0;
+    z-index: -100;
+    pointer-events: none;
+}
+
+.take-without-moving .options {
+    height: 80%;
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.options > .button {
+    height: 2rem;
+    border-radius: calc(var(--border-rad) / 1.3);
+}
+
+.options > .button:not(.active) {
+    box-shadow: 3px 5px 0 0 var(--theme-darkest);
+    background-color: var(--theme-darker);
+}
+.options > .button:not(.active):hover {
+    background-color: var(--theme-dark);
+}
+.options > .button:not(.active):active {
+    box-shadow: 2px 3px 0 0 var(--theme-darkest);
+}
+
+
+/*  promotion  */
+
+
+.promotion {
+    position: absolute;
+    left: 0;
+    display: grid;
+    
+    border-radius: var(--border-rad);
+    transition: opacity .5s;
+    z-index: 150;
+    pointer-events: none;
+}
+.promotion.white {
+    top: 0;
+    background-color: var(--text-color);
+    border: solid 5px var(--theme-color);
+    box-shadow: 0 5px 0 0 var(--theme-light),
+                0 5px 5px 0 var(--theme-light);
+}
+.promotion.black {
+    bottom: 0;
+    background-color: var(--background-color-nav);
+    border: solid 5px var(--theme-color);
+    box-shadow: 0 -5px 0 0 var(--theme-light),
+                0 -5px 5px 0 var(--theme-light);
+}
+
+.promotion .square {
+    height: 100%;
+    width: 100%;
+    transition: opacity 0s;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.promotion.white .square:hover {
+    background-color: var(--color-button-hover);
+}
+.promotion.black .square:hover {
+    background-color: var(--text-color);
+}
+
+.promotion.white .square:active {
+    opacity: .4;
+}
+.promotion.black .square:active {
+    opacity: .4;
+}
+
+.promotion .piece {
+    pointer-events: none;
+}
+
+
+/*  End Screen  */
+
+
+.end-screen {
+    position: fixed;
+    top: 30%;
+    height: 40%;
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color-main);
+    border: solid .2rem var(--theme-darker);
+    border-radius: var(--border-rad);
+    box-shadow: 0 5px 0 0 var(--shadow-color),
+                0 0 5px 2px var(--shadow-dark);
+    font-size: 1.3rem;
+    font-weight: 600;
+    z-index: -100;
+    opacity: 0;
+}
+
+.rematch {
+    height: 20%;
+    width: 40%;
+    color: var(--text-color) !important;
+}
+
+.rematch > div {
+    height: 100%;
+    width: 100%;
+}
+
+
+.squareImg {
+    transition: all 1s linear;
+    opacity: 1;
+    animation: fade forwards 1s;
+}
+
+@keyframes fade {
+    100% {opacity: 0;}
+}
+
+/*  Ability-box  */
+
+.ability-box {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--background-color-main);
+    border: solid .2rem var(--theme-darker);
+    border-radius: var(--border-rad);
+    box-shadow: 0 5px 0 0 var(--shadow-color),
+                0 0 5px 2px var(--shadow-dark);
+    padding: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    z-index: -100;
+    opacity: 0;
+}
+
+.ability-button {
+    padding-top: .6rem;
+    padding-bottom: .6rem;
+}
+
+
+/*  Themed Updates  */
+
+
+.turns-left {
+    position: absolute;
+    height: 100%;
+    line-height: 100%;
+    font-weight: 600;
+    color: var(--text-color);
+    text-shadow: 0 0 5px black;
+    z-index: 10;
+}
+
+.water, .boiling, .steam, .tsunami, .lava, .fire, .magma {
+    position: relative;
+}
+
+.water > .square-bg, .boiling > .square-bg, .steam > .square-bg, .tsunami > .square-bg, .lava > .square-bg, .fire > .square-bg, .magma > .square-bg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+
+.tsunami-button {
+    position: absolute;
+    height: 30%;
+    border: solid .2rem var(--theme-darker);
+    border-radius: var(--border-rad);
+    box-shadow: 0 5px 0 0 var(--shadow-color),
+                0 0 5px 2px var(--shadow-dark);
+    background-color: var(--background-color-main);
+    transition: all .2s;
+}
+
+.tsunami-button:hover {
+    transform: scale(1.05);
+}
+
+.tsunami-button:active {
+    transform: scale(1);
+}
+
+
+.no-ship-move-button {
+    position: absolute;
+    width: auto;
+    padding: 1rem;
+}
+
+.no-ship-move-button:hover, .no-ship-move-button:active {
+    position: absolute;
+    height: auto;
+    bottom: auto;
+}
+
+
+/*  Media Queries  */
+
+/* default -> desktop */
+
+
+/* Mega large devices (1500px and up)*/
+@media only screen and (min-width: 1500px) {
+    
+}
+
+/* Extra large devices (large laptops and desktops, 1500px and down)*/
+@media only screen and (max-width: 1500px) {
+    
+}
+
+/* Large devices (laptops/desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    
+}
+
+/* Medium devices (landscape tablets, 992px and down) */
+@media only screen and (max-width: 992px) {
+    .container {
+        height: 100%;
+        flex-direction: column;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .side-bar-game {
+        width: 50%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(7, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .player-side {
+        height: 100%;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    .black-side {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .white-side {
+        grid-column-start: 2;
+        grid-column-end: 3;
+    }
+
+    .clock {
+        width: 90%;
+    }
+    .nickname {
+        margin: 0;
+    }
+
+
+    .mid-side {
+        height: 100%;
+        flex-direction: column-reverse;
+        grid-row-start: 2;
+        grid-row-end: 8;
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .mid-container {
+        height: 80%;
+        width: 90%;
+    }
+
+    .right-con {
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+
+    .history-button {
+        padding: 0;
+    }
+
+
+    .end-screen {
+        height: 30%;
+        width: 70%;
+        margin-left: 4rem;
+    }
+    .ability-box {
+        height: 40%;
+        width: 50%;
+        margin: 0;
+    }
+    .take-without-moving {
+        min-height: 4rem;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 768px and down) */
+@media only screen and (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .container {
+        height: 100%;
+        justify-content: center;
+    }
+
+    .side-bar-game {
+        width: 70%;
+    }
+
+    .ability-box {
+        width: 80%;
+        height: 60%;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .history {
+        height: 40%;   
+    }
+
+    .history-button {
+        height: 70%;
+    }
+
+    .clock {
+        font-size: .9rem;
+    }
+
+    .end-screen, .ability-box {
+        margin-left: 3rem;
+    }
+
+    .ability-box {
+        width: 120%;
+        height: 90%;
+    }
+}
